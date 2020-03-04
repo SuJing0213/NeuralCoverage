@@ -2,6 +2,7 @@ import numpy as np
 import tensorflow as tf
 import sys
 
+
 np.set_printoptions(precision=8, suppress=True, threshold=sys.maxsize)
 
 
@@ -33,6 +34,8 @@ def get_neural_value(source_path, result_path, tensor_name, number_of_value):
             feed_dict = {x: picture, y_: label, keep_prob: 1.0}
             tensor = graph.get_tensor_by_name(tensor_name)
             layer_output = sess.run(tensor, feed_dict)
+            # print(np.array(layer_output).shape)
+            # input()
             layer_output = np.array(layer_output).reshape([number_of_value])
             for value in layer_output:
                 print(value, end='    ', file=result_file)
@@ -45,10 +48,11 @@ if __name__ == "__main__":
         Source_path = r'MNIST_data/training_data/train_images_class_' + str(i) + '.txt'
 
         # 第一层卷积的输出
-        # Result_path = r'MNIST_data/training_data/all_neural_value/layer1_conv_1/class_' + \
-        #               str(i) + '_NeuralValue.txt'
-        # get_neural_value(source_path=Source_path, result_path=Result_path,
-        #                  tensor_name="layer1-conv1/conv1:0", number_of_value=28*28*6)
+        Result_path = r'MNIST_data/training_data/all_neural_value/layer1_conv_1/class_' + \
+                      str(i) + '_NeuralValue.txt'
+        get_neural_value(source_path=Source_path, result_path=Result_path,
+                         tensor_name="layer1-conv1/conv1:0", number_of_value=28*28*6)
+
 
         # 第二层池化的输出
         # Result_path = r'MNIST_data/training_data/all_neural_value/layer2_maxpool_1/class_' + \
@@ -81,7 +85,7 @@ if __name__ == "__main__":
         #                  tensor_name="layer6-fc2/fc2:0", number_of_value=84)
 
         # # 第七层全连接的输出
-        Result_path = r'MNIST_data/training_data/all_neural_value/layer7_fc_3/class_' + \
-                      str(i) + '_NeuralValue.txt'
-        get_neural_value(source_path=Source_path, result_path=Result_path,
-                         tensor_name="layer7-fc3/output:0", number_of_value=10)
+        # Result_path = r'MNIST_data/training_data/all_neural_value/layer7_fc_3/class_' + \
+        #               str(i) + '_NeuralValue.txt'
+        # get_neural_value(source_path=Source_path, result_path=Result_path,
+        #                  tensor_name="layer7-fc3/output:0", number_of_value=10)
