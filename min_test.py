@@ -281,38 +281,38 @@ if __name__ == "__main__":
         for elem in cumulative_cov_rate:
             print(elem, file=f)
 
-    # fig = plt.figure(dpi=80)  # figsize=(20, 8),
-    # plt.title("Cumulative Coverage Rate")
-    # plt.xlabel("number of examples")
-    # plt.ylabel("neuron coverage rate")
-    # x = [i for i in range(55001)]
-    # plt.plot(x, cumulative_cov_rate)
-    # y = []
-    # for i in range(55001):
-    #     y.append(i / 55000)
-    # plt.plot(x, y)
-    # plt.show()
-
-    num_example, index_example, cov_cumulative = min_test_example_cov(global_neuron_value_list,
-                                                               act_bound, cov, global_neuron_number)
-    fig = plt.figure(dpi=80)
-    plt.title("Min Test Coverage Rate")
+    fig = plt.figure(dpi=80)  # figsize=(20, 8),
+    plt.title("Cumulative Coverage Rate")
     plt.xlabel("number of examples")
     plt.ylabel("neuron coverage rate")
-    x = [i for i in range(num_example+1)]
-    plt.plot(x, cov_cumulative)
+    x = [i for i in range(55001)]
+    plt.plot(x, cumulative_cov_rate)
     y = []
-    for i in range(num_example+1):
-        y.append(i / num_example)
-
-    plt.legend(['coverage', ''])
-    #
-    # ax = plt.gca()
-    # ax.spines['right'].set_color('none')  # right边框属性设置为none 不显示
-    # ax.spines['top'].set_color('none')  # top边框属性设置为none 不显示
-
+    for i in range(55001):
+        y.append(i / 55000)
     plt.plot(x, y)
+    plt.legend(["coverage", "coverage increase rate"], loc="lower right")
     plt.show()
+
+    # num_example, index_example, cov_cumulative = min_test_example_cov(global_neuron_value_list,
+    #                                                                   act_bound, cov, global_neuron_number)
+    # fig = plt.figure(dpi=80)
+    # plt.title("Min Test Coverage Rate")
+    # plt.xlabel("number of examples")
+    # plt.ylabel("neuron coverage rate")
+    # x = [i for i in range(num_example+1)]
+    # plt.plot(x, cov_cumulative, marker='o')
+    # for i in range(len(cov_cumulative)):
+    #     cov_cumulative[i] = round(cov_cumulative[i], 3)
+    # y = []
+    # for i in range(num_example+1):
+    #     y.append(i / num_example)
+    # plt.plot(x, y)
+    # # 第二个参数是写在哪里
+    # for xy in zip(x, cov_cumulative):
+    #     plt.annotate("(%s,%s)" % xy, xy=xy, xytext=(-20, 10), textcoords='offset points')
+    # plt.legend(["min test coverage", "coverage increase rate"], loc="lower right")
+    # plt.show()
 
     # neuron_value_list = []
     # neuron_number = 120
